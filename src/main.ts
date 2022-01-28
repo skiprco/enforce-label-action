@@ -7,7 +7,7 @@ async function run() {
 
     enforceAnyLabels(labels);
 
-  } catch (error) {
+  } catch (error: any) {
     core.setFailed(error.message);
   }
 }

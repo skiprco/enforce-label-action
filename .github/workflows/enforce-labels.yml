@@ -7,6 +7,6 @@ jobs:
   enforce-label:
     runs-on: ubuntu-latest
     steps:
-      - uses: skiprco/enforce-label-action
+      - uses: skiprco/enforce-label-action@main
         with:
           REQUIRED_LABELS_REGEX_ANY: '^v\d+\.\d+\.\d+$'
