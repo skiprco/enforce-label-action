@@ -1,0 +1,10 @@
+name: 'Enforce PR labels'
+description: 'Enforce PR labels'
+author: 'Skipr'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+inputs:
+  REQUIRED_LABELS_ANY_REGEX:
+    description: 'Require at least one label'
+    
