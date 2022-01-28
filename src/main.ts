@@ -18,7 +18,7 @@ function enforceAnyLabels(labels: string[]) {
   if (labels.length === 0) {
     core.setFailed(`PR must have at least a single label to match`);
   }
-  if (labels.find((l) => validateLabelAgainstRegex(l, requiredLabelsRegexAny))) {
+  if (!labels.some((l) => validateLabelAgainstRegex(l, requiredLabelsRegexAny))) {
     core.setFailed(`Please set one label for this PR which matches regex: ${requiredLabelsAny}`);
   }
 }
