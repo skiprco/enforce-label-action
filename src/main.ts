@@ -12,13 +12,13 @@ async function run() {
   }
 }
 
-function enforceAnyLabels(labels: string[]) {
+function enforceAnyLabels(labels) {
   const requiredLabelsAny: string = core.getInput('REQUIRED_LABELS_REGEX_ANY', {required: true});
   const requiredLabelsRegexAny = new RegExp(requiredLabelsAny);
   if (labels.length === 0) {
     core.setFailed(`PR must have at least a single label to match`);
   }
-  if (!labels.some((l) => validateLabelAgainstRegex(l, requiredLabelsRegexAny))) {
+  if (!labels.some((l: any) => validateLabelAgainstRegex(l.name, requiredLabelsRegexAny))) {
     core.setFailed(`Please set one label for this PR which matches regex: ${requiredLabelsAny}`);
   }
 }
