@@ -15,9 +15,18 @@ async function run() {
 function enforceAnyLabels(labels: string[]) {
   const requiredLabelsAny: string = core.getInput('REQUIRED_LABELS_REGEX_ANY', {required: true});
   const requiredLabelsRegexAny = new RegExp(requiredLabelsAny);
-  if (labels.find((l) => requiredLabelsRegexAny.test(l))) {
+  if (labels.length === 0) {
+    core.setFailed(`PR must have at least a single label to match`);
+  }
+  if (labels.find((l) => validateLabelAgainstRegex(l, requiredLabelsRegexAny))) {
     core.setFailed(`Please set one label for this PR which matches regex: ${requiredLabelsAny}`);
   }
+}
+
+function validateLabelAgainstRegex(label: string, re: RegExp): boolean {
+  const match = re.test(label) 
+  console.log(`Label ${label} matches against regex ${re.source}: ${match}`)
+  return match
 }
 
 run();
