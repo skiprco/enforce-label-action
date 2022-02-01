@@ -2,8 +2,8 @@ name: Enforce PR labels
 description: Enforce PR labels
 author: Skipr
 runs:
-  using: docker
-  image: Dockerfile
+  using: node16
+  main: dist/index.js
 inputs:
   REQUIRED_LABELS_REGEX_ANY:
     required: true
